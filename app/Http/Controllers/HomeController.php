@@ -22,9 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('id', 'desc')->paginate(5);
+        $name = $request->get('name');
+        $products = Product::name($name)->orderBy('id', 'desc')->paginate(5);
         return view('home', ['products' => $products]);
     }
 }

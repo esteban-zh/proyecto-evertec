@@ -2,7 +2,21 @@
 
 @section('content')
 <div class="container">
-    <div class="card-group m-4">
+    <div class="input-group d-flex justify-content-around">
+        <form class="d-flex" action="{{route('home')}}" method="GET">
+            @csrf
+            <input name="name" type="text" class="form-control" placeholder="Buscar..."
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+            </div>
+        </form>
+        @if (Auth::user()->admon)
+        <a href="{{route('users.create')}}" class="btn btn-outline-secondary" type="submit" id="button-addon2">Crear un
+            nuevo usuario</a>
+        @endif
+    </div>
+    <div class="card-group m-3">
         @if ($products->count() > 0)
         @foreach ($products as $product)
         <div class="card mx-3">
