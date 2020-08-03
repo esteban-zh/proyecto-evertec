@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -35,7 +35,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request...
+
+        $product = new Product;
+
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->picture = $request->file('picture')->store('img', 'public');
+
+        $product->save();
+        return redirect()->route('home');
     }
 
     /**

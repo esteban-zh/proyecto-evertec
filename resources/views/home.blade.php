@@ -12,22 +12,29 @@
             </div>
         </form>
         @if (Auth::user()->admon)
-        <a href="{{route('users.create')}}" class="btn btn-outline-secondary" type="submit" id="button-addon2">Crear un
-            nuevo usuario</a>
+        <a href="{{route('products.create')}}" class="btn btn-outline-secondary" type="submit" id="button-addon2">Crear
+            un
+            nuevo producto</a>
         @endif
     </div>
     <div class="card-group m-3">
         @if ($products->count() > 0)
         @foreach ($products as $product)
         <div class="card mx-3">
-            <img src="@if (substr($product->picture, 0, 5) !== 'https')
-                /storage/{{$product->picture}}
-                @else
-                {{$product->picture}}
-            @endif" class="card-img-top" alt="{{$product->name}}">
+            <div style="width: 100%;">
+                <img src="@if (substr($product->picture, 0, 5) !== 'https')
+                    /storage/{{$product->picture}}
+                    @else
+                    {{$product->picture}}
+                @endif" class="card-img-top" alt="{{$product->name}}">
+            </div>
             <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
                 <p class="card-text"><small class="text-muted">${{number_format($product->price)}}</small></p>
+                @if (Auth::user()->admon)
+                <a href="{{route('products.edit', $product)}}" class="btn btn-outline-primary" type="submit"
+                    id="button-addon2">Actualizar</a>
+                @endif
             </div>
         </div>
         @endforeach
