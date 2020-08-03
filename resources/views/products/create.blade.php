@@ -2,16 +2,17 @@
 
 @section('content')
 <div class="container">
+    <h1>Crear</h1>
     <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nombre</label>
-                <input name="name" type="text" class="form-control" id="inputEmail4">
+                <input name="name" type="text" class="form-control" id="inputEmail4" value="{{old('name')}}">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Precio</label>
-                <input name="price" type="number" class="form-control" id="inputPassword4">
+                <input name="price" type="number" class="form-control" id="inputPassword4" value="{{old('name')}}">
             </div>
         </div>
         <div class="form-group">

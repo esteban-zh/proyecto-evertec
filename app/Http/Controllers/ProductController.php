@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -66,7 +67,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', ['product' => $product]);
     }
 
     /**
@@ -78,7 +79,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        // Validate the request...
+
+        $product->name = $request->name;
+        $product->price = $request->price;
+        if ($request->hasFile('picture')) {
+            Storage::delete($product->picture);
+            $product->picture = $request->file('picture')->store('img', 'public');
+        }
+
+        $product->save();
+        return redirect()->route('home');
     }
 
     /**
