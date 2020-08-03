@@ -55,10 +55,16 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('home') }}</a>
+                        </li>
                         @auth
                         @if (Auth::user()->admon)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.index') }}">{{ __('users') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.index') }}">{{ __('products') }}</a>
                         </li>
                         @endif
                         @endauth

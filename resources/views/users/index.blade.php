@@ -20,7 +20,7 @@
                 <td><a href="{{route('users.show', $user)}}">{{$user->name}}</a></td>
                 <td>{{$user->email}}</td>
                 <td>
-                    <input name="enable" type="checkbox" class="form-check-input" id="exampleCheck1" onchange="event.preventDefault();
+                    <input name="enable" type="checkbox" class="form-check-input" onchange="event.preventDefault();
           document.getElementById('{{$user->id}}').submit();" {{$user->enable ? 'checked' : ''}}>
                     @if ($user->enable)
                     Habilitado
