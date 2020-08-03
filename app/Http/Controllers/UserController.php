@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', ['user' => $user]);
+        //
     }
 
     /**
@@ -70,7 +70,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        return ($user);
+        $user->enable = $user->enable ? false : true;
+        $user->save();
+        return back();
     }
 
     /**
