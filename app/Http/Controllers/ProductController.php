@@ -36,12 +36,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request...
+        $validatedData = $request->validate([
+            'name' => 'required|min:3|max:80',
+            'picture' => 'image',
+            'price' => 'required|numeric|min:0',
+        ]);
 
         $product = new Product;
 
-        $product->name = $request->name;
-        $product->price = $request->price;
+        $product->name = $validatedData['name'];
+        $product->price = $validatedData['price'];
         $product->picture = $request->file('picture')->store('img', 'public');
 
         $product->save();
@@ -79,10 +83,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        // Validate the request...
+        $validatedData = $request->validate([
+            'name' => 'required|min:3|max:80',
+            'picture' => 'image',
+            'price' => 'required|numeric|min:0',
+        ]);
 
-        $product->name = $request->name;
-        $product->price = $request->price;
+        $product->name = $validatedData['name'];
+        $product->price = $validatedData['price'];
         if ($request->hasFile('picture')) {
             Storage::delete($product->picture);
             $product->picture = $request->file('picture')->store('img', 'public');

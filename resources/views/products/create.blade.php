@@ -9,16 +9,25 @@
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nombre</label>
                 <input name="name" type="text" class="form-control" id="inputEmail4" value="{{old('name')}}">
+                @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Precio</label>
                 <input name="price" type="number" class="form-control" id="inputPassword4" value="{{old('name')}}">
+                @error('price')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
         <div class="form-group">
             <div class="custom-file">
                 <input name="picture" type="file" class="custom-file-input" id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01">
+                @error('picture')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <label class="custom-file-label" for="inputGroupFile01">Escoge la foto</label>
             </div>
         </div>
