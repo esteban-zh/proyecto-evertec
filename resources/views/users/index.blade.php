@@ -4,6 +4,10 @@
 <div class="container">
     <h1>Usuarios</h1>
 
+    @if (session('status'))
+    {{ session('status') }}
+    @else
+
     <table class="table">
         <thead>
             <tr>
@@ -11,6 +15,7 @@
                 <th>name</th>
                 <th>e-mail</th>
                 <th>state</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -33,10 +38,18 @@
                         @method('PATCH')
                     </form>
                 </td>
+                <td>
+                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-outline-primary" type="submit">eliminar</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    @endif
 </div>
 
 @endsection

@@ -15,7 +15,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Precio</label>
-                <input name="price" type="number" class="form-control" id="inputPassword4" value="{{old('name')}}">
+                <input name="price" type="number" class="form-control" id="inputPassword4" value="{{old('price')}}">
                 @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

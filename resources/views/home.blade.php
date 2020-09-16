@@ -34,6 +34,11 @@
                 @if (Auth::user()->admon)
                 <a href="{{route('products.edit', $product)}}" class="btn btn-outline-primary" type="submit"
                     id="button-addon2">Actualizar</a>
+                <form action="{{ route('products.destroy', $product) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-primary" type="submit">eliminar</button>
+                </form>
                 @endif
             </div>
         </div>

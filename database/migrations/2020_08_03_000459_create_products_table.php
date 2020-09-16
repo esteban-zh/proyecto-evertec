@@ -21,6 +21,9 @@ class CreateProductsTable extends Migration
             $table->boolean('enable')->default(true);
             $table->timestamps();
         });
+        // Schema::table('flights', function (Blueprint $table) {
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -31,5 +34,8 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('products');
+        // Schema::table('flights', function (Blueprint $table) {
+        //     $table->dropSoftDeletes();
+        // });
     }
 }

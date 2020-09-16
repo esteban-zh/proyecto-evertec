@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\SaveProductRequest;
 
 class ProductController extends Controller
 {
@@ -34,22 +35,29 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveProductRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|min:3|max:80',
-            'picture' => 'image',
-            'price' => 'required|numeric|min:0',
-        ]);
+        $product = new Product($request->validated());
 
-        $product = new Product;
-
-        $product->name = $validatedData['name'];
-        $product->price = $validatedData['price'];
         $product->picture = $request->file('picture')->store('img', 'public');
 
         $product->save();
-        return redirect()->route('home');
+
+        return redirect()->route('home')->with('status', "el producto {$product->name} fue creado con exito");
+        // $validatedData = $request->validate([
+        //     'name' => 'required|min:3|max:80',
+        //     'picture' => 'image',
+        //     'price' => 'required|numeric|min:0',
+        // ]);
+
+        // $product = new Product;
+
+        // $product->name = $validatedData['name'];
+        // $product->price = $validatedData['price'];
+        // $product->picture = $request->file('picture')->store('img', 'public');
+
+        // $product->save();
+        // return redirect()->route('home');
     }
 
     /**
@@ -81,23 +89,20 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    //public function update(Request $request, Product $product)
+    public function update(SaveProductRequest $request, Product $product)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|min:3|max:80',
-            'picture' => 'image',
-            'price' => 'required|numeric|min:0',
-        ]);
 
-        $product->name = $validatedData['name'];
-        $product->price = $validatedData['price'];
         if ($request->hasFile('picture')) {
             Storage::delete($product->picture);
+            // $product->update($request->validated());
+            $product->fill($request->validated());
             $product->picture = $request->file('picture')->store('img', 'public');
+            //$product->save();
         }
-
         $product->save();
-        return redirect()->route('home');
+        //return redirect()->route('home');
+        return redirect()->route('home')->with('status', "el producto {$product->name} fue actualizado");
     }
 
     /**
@@ -108,6 +113,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Storage::delete($product->picture);
+        $product->delete();
+        return redirect()->route('home'); //->with('status', "el producto {$product->name} fue actualizado");
+
     }
 }
