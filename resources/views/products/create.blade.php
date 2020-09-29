@@ -20,6 +20,28 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">descripcion</label>
+                <input name="description" type="text" class="form-control" id="inputPassword4"
+                    value="{{old('description')}}">
+                @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">stock</label>
+                <input name="stock" type="number" class="form-control" id="inputPassword4" value="{{old('stock')}}">
+                @error('stock')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">status</label>
+                <input name="status" type="text" class="form-control" id="inputPassword4" value="{{old('status')}}">
+                @error('status')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
         <div class="form-group">
             <div class="custom-file">

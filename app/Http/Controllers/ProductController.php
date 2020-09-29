@@ -40,6 +40,9 @@ class ProductController extends Controller
         $product = new Product($request->validated());
 
         $product->picture = $request->file('picture')->store('img', 'public');
+        $product->status = $request->status;
+        $product->description = $request->description;
+        $product->stock = $request->stock;
 
         $product->save();
 

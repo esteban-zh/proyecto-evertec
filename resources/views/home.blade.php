@@ -30,7 +30,10 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
+                <p>{{$product->description}}</p>
                 <p class="card-text"><small class="text-muted">${{number_format($product->price)}}</small></p>
+                <p>{{$product->stock}}</p>
+                <p>{{$product->status}}</p>
                 @if (Auth::user()->admon)
                 <a href="{{route('products.edit', $product)}}" class="btn btn-outline-primary" type="submit"
                     id="button-addon2">Actualizar</a>
@@ -50,5 +53,6 @@
     <div class="d-flex justify-content-center">
         {{ $products->links() }}
     </div>
+    {{-- {{ $products->render() }} --}}
 </div>
 @endsection

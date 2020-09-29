@@ -24,8 +24,10 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $name = $request->get('name');
-        $products = Product::name($name)->orderBy('id', 'desc')->paginate(4);
+        $name = $request->name;
+        //dd($name);
+        //$products = Product::name($name)->orderBy('id', 'desc')->paginate(4);
+        $products = Product::available()->name($name)->orderBy('id', 'desc')->paginate(4);
         return view('home', ['products' => $products]);
     }
 }
