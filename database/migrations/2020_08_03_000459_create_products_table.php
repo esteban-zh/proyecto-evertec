@@ -17,12 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('picture');
-            $table->string('description', 1000)->nullable();
+            $table->string('description', 1000);
             $table->unsignedInteger('price');
             $table->boolean('enable')->default(true);
             $table->timestamps();
-            $table->integer('stock')->unsigned()->nullable();
-            $table->string('status')->default('available');
+            $table->integer('stock')->unsigned(); //->nullable();
+            $table->string('status'); //->default('available');
         });
         // Schema::table('flights', function (Blueprint $table) {
         //     $table->softDeletes();

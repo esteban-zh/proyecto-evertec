@@ -63,6 +63,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.index') }}">{{ __('users') }}</a>
                         </li>
+
                         @endif
                         @endauth
                         <!-- Authentication Links -->
@@ -93,6 +94,13 @@
                                     @csrf
                                 </form>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="{{route('carts.index')}}">
+                                @inject('cartService', 'App\Services\CartService')
+                                <i class="fas fa-shopping-cart"></i>
+                                {{ __('Cart') }} ({{$cartService->countProductsInCart()}})
+                            </a>
                         </li>
                         @endguest
                     </ul>

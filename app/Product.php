@@ -24,7 +24,7 @@ class Product extends Model
      */
     protected static function booted()
     {
-        static::addGlobalScope(new AvailableScope);
+        //static::addGlobalScope(new AvailableScope);
     }
 
     public function scopeAvailable($query)
@@ -38,6 +38,21 @@ class Product extends Model
         if ($name) {
             return $query->where('name', 'LIKE', "%$name%");
         }
+    }
+
+    public function carts()
+    {
+        return $this->morphedByMany(Cart::class, 'productable')->withPivot('quantity');
+    }
+
+    public function orders()
+    {
+        return $this->morphedByMany(Order::class, 'productable')->withPivot('quantity');
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->pivot->quantity * $this->price;
     }
 }
 // class Flight extends Model

@@ -26,7 +26,7 @@
                     /storage/{{$product->picture}}
                     @else
                     {{$product->picture}}
-                @endif" class="card-img-top" alt="{{$product->name}}">
+                @endif" class="card-img-top" height="250" alt="{{$product->name}}">
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
@@ -34,6 +34,11 @@
                 <p class="card-text"><small class="text-muted">${{number_format($product->price)}}</small></p>
                 <p>{{$product->stock}}</p>
                 <p>{{$product->status}}</p>
+                <form class="d-inline" method="POST"
+                    action="{{route('products.carts.store', ['product' => $product])}}">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Add to cart</button>
+                </form>
                 @if (Auth::user()->admon)
                 <a href="{{route('products.edit', $product)}}" class="btn btn-outline-primary" type="submit"
                     id="button-addon2">Actualizar</a>
