@@ -102,6 +102,9 @@
                                 {{ __('Cart') }} ({{$cartService->countProductsInCart()}})
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
+                        </li>
                         @endguest
                     </ul>
                 </div>

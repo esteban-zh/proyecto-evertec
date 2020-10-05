@@ -24,6 +24,6 @@ Route::get('products/{product}', 'ProductController@show')->name('products.show'
 
 Route::patch('products/{product}/carts/{cart}', 'ProductCartController@removeOne')->name('products.carts.removeOne');
 
-Route::resource('orders', 'OrderController')->only(['create', 'store']);
+Route::resource('orders', 'OrderController')->only(['index', 'create', 'store']);
 
 Route::resource('orders.payments', 'OrderPaymentController')->only(['create', 'store']);

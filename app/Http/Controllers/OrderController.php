@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Services\CartService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -16,6 +17,22 @@ class OrderController extends Controller
         $this->cartService = $cartService;
 
         $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the Orders of User.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $user = Auth::user();
+        $orders = Order::where('customer_id', $user->id)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('orders.index')->with('orders', $orders);
     }
 
     /**

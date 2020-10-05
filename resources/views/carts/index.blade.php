@@ -40,7 +40,7 @@
             <div class="text-center">
                 <form class="d-inline" method="POST" action="{{ route('orders.store') }}">
                     @csrf
-                    <button class="btn btn-success btn-lg mb-3 w-auto" type="submit"> Confirm Oder </button>
+                    <button class="btn btn-success btn-lg mb-3 w-auto" type="submit"> Confirm Order </button>
                 </form>
             </div>
 

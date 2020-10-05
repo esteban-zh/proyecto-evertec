@@ -45,7 +45,7 @@ class OrderPaymentController extends Controller
     public function store(Request $request, Order $order)
     {
 
-        $payment = $this->p2p->createRequest($order, $request);
+        $payment = $this->p2p->makeRequest($order, $request);
 
         $this->cartService->getCartFromUser()->products()->detach();
 
