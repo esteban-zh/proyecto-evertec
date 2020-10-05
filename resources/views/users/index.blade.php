@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-    <h1>Usuarios</h1>
+    <h1>Users</h1>
 
     @if (session('status'))
     {{ session('status') }}
@@ -28,9 +28,9 @@
                     <input name="enable" type="checkbox" class="form-check-input" onchange="event.preventDefault();
           document.getElementById('{{$user->id}}').submit();" {{$user->enable ? 'checked' : ''}}>
                     @if ($user->enable)
-                    Habilitado
+                    enable
                     @else
-                    Inhabilitado
+                    disable
                     @endif
                     <form id="{{$user->id}}" action="{{ route('users.update', $user) }}" method="POST"
                         style="display: none;">
@@ -42,7 +42,7 @@
                     <form action="{{ route('users.destroy', $user) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-outline-primary" type="submit">eliminar</button>
+                        <button class="btn btn-outline-primary" type="submit">delete</button>
                     </form>
                 </td>
             </tr>

@@ -8,13 +8,12 @@
             <input name="name" type="text" class="form-control" placeholder="Buscar..."
                 aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">search</button>
             </div>
         </form>
         @if (Auth::user()->admon)
-        <a href="{{route('products.create')}}" class="btn btn-outline-secondary" type="submit" id="button-addon2">Crear
-            un
-            nuevo producto</a>
+        <a href="{{route('products.create')}}" class="btn btn-outline-secondary" type="submit" id="button-addon2">create
+            new product</a>
         @endif
     </div>
     <div class="card-group m-3">
@@ -41,23 +40,22 @@
                 </form>
                 @if (Auth::user()->admon)
                 <a href="{{route('products.edit', $product)}}" class="btn btn-outline-primary" type="submit"
-                    id="button-addon2">Actualizar</a>
+                    id="button-addon2">update</a>
                 <form action="{{ route('products.destroy', $product) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-outline-primary" type="submit">eliminar</button>
+                    <button class="btn btn-outline-primary" type="submit">delete</button>
                 </form>
                 @endif
             </div>
         </div>
         @endforeach
         @else
-        No hay productos
+        there are not products
         @endif
     </div>
     <div class="d-flex justify-content-center">
         {{ $products->links() }}
     </div>
-    {{-- {{ $products->render() }} --}}
 </div>
 @endsection

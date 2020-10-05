@@ -32,26 +32,16 @@
             'order' => $order
           ]) }}">
                         @csrf
-
                         <div class="d-flex flex-column w-50">
                             <textarea name="textArea" cols="40" rows="6"></textarea>
                             <button class="btn btn-success btn-lg mb-3 w-auto" type="submit"> Pay </button>
-
                         </div>
-
                     </form>
-
                     <hr>
-
                     <h3>Total to pay in the order <span class="badge badge-success">$
                             {{number_format($order->total)}}</span></h3>
-
                     <hr>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>

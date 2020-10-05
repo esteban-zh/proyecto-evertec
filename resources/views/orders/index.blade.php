@@ -47,10 +47,7 @@
                     </tbody>
                 </table>
             </div>
-            {{-- Pagination --}}
-            {{-- <div class=" d-flex justify-content-center">{{ $products->render()}}
-        </div> --}}
+        </div>
     </div>
-</div>
 </div>
 @endsection

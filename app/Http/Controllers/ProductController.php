@@ -10,16 +10,6 @@ use App\Http\Requests\SaveProductRequest;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,38 +30,13 @@ class ProductController extends Controller
         $product = new Product($request->validated());
 
         $product->picture = $request->file('picture')->store('img', 'public');
-        $product->status = $request->status;
         $product->description = $request->description;
+        $product->status = $request->status;
         $product->stock = $request->stock;
 
         $product->save();
 
         return redirect()->route('home')->with('status', "el producto {$product->name} fue creado con exito");
-        // $validatedData = $request->validate([
-        //     'name' => 'required|min:3|max:80',
-        //     'picture' => 'image',
-        //     'price' => 'required|numeric|min:0',
-        // ]);
-
-        // $product = new Product;
-
-        // $product->name = $validatedData['name'];
-        // $product->price = $validatedData['price'];
-        // $product->picture = $request->file('picture')->store('img', 'public');
-
-        // $product->save();
-        // return redirect()->route('home');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
     }
 
     /**
@@ -92,19 +57,17 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    //public function update(Request $request, Product $product)
     public function update(SaveProductRequest $request, Product $product)
     {
-
+        $product->name = $request->name;
+        $product->price = $request->price;
         if ($request->hasFile('picture')) {
             Storage::delete($product->picture);
-            // $product->update($request->validated());
             $product->fill($request->validated());
             $product->picture = $request->file('picture')->store('img', 'public');
-            //$product->save();
         }
         $product->save();
-        //return redirect()->route('home');
+
         return redirect()->route('home')->with('status', "el producto {$product->name} fue actualizado");
     }
 
@@ -118,7 +81,6 @@ class ProductController extends Controller
     {
         Storage::delete($product->picture);
         $product->delete();
-        return redirect()->route('home'); //->with('status', "el producto {$product->name} fue actualizado");
-
+        return redirect()->route('home');
     }
 }

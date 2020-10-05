@@ -48,7 +48,6 @@
                 <thead>
                     <tr class="text-muted">
                         <th>Id</th>
-                        <th>Img</th>
                         <th>Name</th>
                         <th>Unit price</th>
                         <th>Quantity</th>
@@ -61,13 +60,6 @@
                     @foreach ($cart->products as $product)
                     <tr scope="row">
                         <td>{{$product->id}}</td>
-                        <td class="img-panel">
-                            @if (substr($product->image, 0, 5) == 'https')
-                            <img src="{{$product->image}}" class="img-fluid" alt="Responsive image">
-                            @else
-                            <img src="/storage/{{$product->image}}" class="img-fluid" alt="Responsive image">
-                            @endif
-                        </td>
                         <td>{{$product->name}}</td>
                         <td class="text-success">${{number_format($product->price)}}</td>
                         <td>{{$product->pivot->quantity}}</td>
@@ -102,10 +94,7 @@
                 </tbody>
             </table>
             @endif
-            {{-- Pagination --}}
-            {{-- <div class=" d-flex justify-content-center">{{ $products->render()}}
-        </div> --}}
+        </div>
     </div>
-</div>
 </div>
 @endsection

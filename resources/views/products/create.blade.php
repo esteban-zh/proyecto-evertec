@@ -2,26 +2,26 @@
 
 @section('content')
 <div class="container">
-    <h1>Crear</h1>
+    <h1>Create new</h1>
     <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Nombre</label>
+                <label for="inputEmail4">Name</label>
                 <input name="name" type="text" class="form-control" id="inputEmail4" value="{{old('name')}}">
                 @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPassword4">Precio</label>
+                <label for="inputPassword4">Price</label>
                 <input name="price" type="number" class="form-control" id="inputPassword4" value="{{old('price')}}">
                 @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPassword4">descripcion</label>
+                <label for="inputPassword4">description</label>
                 <input name="description" type="text" class="form-control" id="inputPassword4"
                     value="{{old('description')}}">
                 @error('description')
@@ -50,10 +50,10 @@
                 @error('picture')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <label class="custom-file-label" for="inputGroupFile01">Escoge la foto</label>
+                <label class="custom-file-label" for="inputGroupFile01">choose picture</label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
 @endsection

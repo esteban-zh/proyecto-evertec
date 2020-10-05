@@ -24,7 +24,7 @@ class Product extends Model
      */
     protected static function booted()
     {
-        //static::addGlobalScope(new AvailableScope);
+        static::addGlobalScope(new AvailableScope);
     }
 
     public function scopeAvailable($query)

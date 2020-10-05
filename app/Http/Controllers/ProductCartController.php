@@ -52,7 +52,6 @@ class ProductCartController extends Controller
 
         return redirect()->back();
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -62,6 +61,8 @@ class ProductCartController extends Controller
      */
     public function destroy(Product $product, Cart $cart)
     {
-        //
+        $cart->products()->detach($product->id);
+
+        return redirect()->back();
     }
 }

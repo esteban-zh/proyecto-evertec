@@ -6,22 +6,22 @@
     <div class="card">
         <div class="card-header">
             @if ($user->enable)
-            Habilitado
+            enable
             @else
-            Inhabilitado
+            disable
             @endif
         </div>
         <div class="card-body">
             <h5 class="card-title">{{$user->email}}</h5>
             <ul>
                 <li>
-                    Creado: {{$user->created_at->diffForHumans()}}
+                    create: {{$user->created_at->diffForHumans()}}
                 </li>
                 <li>
-                    Actualizado: {{$user->updated_at->diffForHumans()}}
+                    update: {{$user->updated_at->diffForHumans()}}
                 </li>
             </ul>
-            <a href="{{url()->previous()}}" class="btn btn-primary">Volver</a>
+            <a href="{{url()->previous()}}" class="btn btn-primary">return</a>
         </div>
     </div>
 </div>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use App\Payment;
 use App\Services\CartService;
 use App\Services\PlaceToPayService;
 use Illuminate\Http\Request;

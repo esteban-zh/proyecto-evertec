@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Actualizar</h1>
+    <h1>update</h1>
     <form action="{{route('products.update', $product)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Nombre</label>
+                <label for="inputEmail4">name</label>
                 <input name="name" type="text" class="form-control" id="inputEmail4"
                     value="{{old('name', $product->name)}}">
                 @error('name')
@@ -16,7 +16,7 @@
                 @enderror
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPassword4">Precio</label>
+                <label for="inputPassword4">Price</label>
                 <input name="price" type="number" class="form-control" id="inputPassword4"
                     value="{{old('price', $product->price)}}">
                 @error('price')
@@ -31,10 +31,10 @@
                 @error('picture')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <label class="custom-file-label" for="inputGroupFile01">Escoge la foto</label>
+                <label class="custom-file-label" for="inputGroupFile01">choose picture</label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <button type="submit" class="btn btn-primary">update</button>
     </form>
 </div>
 @endsection
