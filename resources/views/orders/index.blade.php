@@ -32,16 +32,20 @@
                     <thead>
                         <tr class="text-muted">
                             <th>Id</th>
+                            <th>RequestId</th>
                             <th>Status</th>
                             <th>Customer id</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
                         <tr scope="row">
                             <td>{{$order->id}}</td>
+                            <td>{{$order->request_id}}</td>
                             <td>{{$order->status}}</td>
                             <td>{{$order->customer_id}}</td>
+                            <td><a class="btn btn-dark" href="{{route('orders.show', $order)}}">See</a></td>
                         </tr>
                         @endforeach
                     </tbody>

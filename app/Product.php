@@ -55,7 +55,3 @@ class Product extends Model
         return $this->pivot->quantity * $this->price;
     }
 }
-// class Flight extends Model
-// {
-//     use SoftDeletes;
-// }

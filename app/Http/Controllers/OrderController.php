@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Services\CartService;
+use App\Services\PlaceToPayService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,10 +12,12 @@ class OrderController extends Controller
 {
 
     public $cartService;
+    public $placeToPayService;
 
-    public function __construct(CartService $cartService)
+    public function __construct(CartService $cartService, PlaceToPayService $placeToPayService)
     {
         $this->cartService = $cartService;
+        $this->placeToPayService = $placeToPayService;
 
         $this->middleware('auth');
     }
@@ -41,7 +44,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Order $order)
     {
         $cart = $this->cartService->getCartFromUser();
 
@@ -71,5 +74,18 @@ class OrderController extends Controller
 
             return redirect()->route('orders.payments.create', ['order' => $order]);
         }
+    }
+
+    public function show(Order $order)
+    {
+        // dd($order->toArray());
+        if ($order->status != 'APPROVED') {
+            $p2pResponse = $this->placeToPayService->getInformation($order->request_id);
+            $order->status = $p2pResponse['status']['status'];
+            $order->save();
+        }
+        return view('orders.show', [
+            'order' => $order,
+        ]);
     }
 }
