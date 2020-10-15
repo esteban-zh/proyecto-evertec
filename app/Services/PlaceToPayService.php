@@ -22,8 +22,9 @@ class PlaceToPayService
             ],
             'expiration' => date('c', strtotime('1 hour')),
             'returnUrl' => route('orders.show', $order->id),
-            'ipAddress' => '127.0.0.1',
-            'userAgent' => 'PlacetoPay Sandbox',
+            'ipAddress' => request()->ip(),
+            'userAgent' => request()->header('User-agent'),
+
         ]);
         return $response->json();
     }

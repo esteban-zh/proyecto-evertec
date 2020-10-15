@@ -32,7 +32,7 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $orders = Order::where('customer_id', $user->id)
-            ->orderBy('id', 'desc')
+            ->latest()
             ->get();
 
         return view('orders.index')->with('orders', $orders);
@@ -59,8 +59,6 @@ class OrderController extends Controller
             $order = $user->orders()->create([
                 'status' => 'pending',
             ]);
-
-            $cart = $this->cartService->getCartFromUser();
 
             $cartProductsWithQuantity = $cart
                 ->products

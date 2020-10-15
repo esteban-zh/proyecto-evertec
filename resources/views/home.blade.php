@@ -21,7 +21,7 @@
         @foreach ($products as $product)
         <div class="card mx-3">
             <div style="width: 100%;">
-                <img src="@if (substr($product->picture, 0, 5) !== 'https')
+                <img src="@if (substr($product->picture, 4, 8) !== 'products')
                     /storage/{{$product->picture}}
                     @else
                     {{$product->picture}}
