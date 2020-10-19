@@ -38,6 +38,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The attributes that should be cast to mutated types.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'admin_since',
+    ];
+
     public function cart()
     {
         return $this->hasOne(Cart::class, 'user_id');
@@ -51,5 +60,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function payments()
     {
         return $this->hasManyThrough(Payment::class, Order::class, 'customer_id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin_since != null
+            && $this->admin_since->lessThanOrEqualTo(now());
     }
 }
