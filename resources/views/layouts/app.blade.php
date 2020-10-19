@@ -50,6 +50,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('promos') }}</a>
                         </li>
+                        @auth
+                        @if (Auth::user()->admon)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.index') }}">{{ __('products') }}</a>
+                        </li>
+
+                        @endif
+                        @endauth
                         @endauth
                     </ul>
 
