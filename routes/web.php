@@ -15,8 +15,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::resource('users', 'UserController')->middleware('verified')->middleware(CheckAdmin::class);
 
-Route::resource('products', 'ProductController')->except('show')->middleware('verified')->middleware(CheckAdmin::class);
-
 Route::resource('products.carts', 'ProductCartController')->only(['store', 'destroy']);
 
 Route::resource('carts', 'CartController')->only(['index']);

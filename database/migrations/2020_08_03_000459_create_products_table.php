@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('picture');
-            $table->string('description', 1000);
+            $table->string('description', 500);
             $table->unsignedInteger('price');
             $table->boolean('enable')->default(true);
             $table->timestamps();

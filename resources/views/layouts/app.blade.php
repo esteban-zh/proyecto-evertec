@@ -50,14 +50,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('promos') }}</a>
                         </li>
-                        @auth
-                        @if (Auth::user()->admon)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('products.index') }}">{{ __('products') }}</a>
-                        </li>
-
-                        @endif
-                        @endauth
                         @endauth
                     </ul>
 
@@ -67,9 +59,9 @@
                             <a class="nav-link" href="{{ route('home') }}">{{ __('home') }}</a>
                         </li>
                         @auth
-                        @if (Auth::user()->admon)
+                        @if (Auth::user()->isAdmin())
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">{{ __('users') }}</a>
+                            <a class="nav-link" href="{{ route('panel') }}">{{ __('admin') }}</a>
                         </li>
 
                         @endif

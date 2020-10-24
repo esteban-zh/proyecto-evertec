@@ -11,10 +11,6 @@
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">search</button>
             </div>
         </form>
-        @if (Auth::user()->admon)
-        <a href="{{route('products.create')}}" class="btn btn-outline-secondary" type="submit" id="button-addon2">create
-            new product</a>
-        @endif
     </div>
     <div class="card-group m-3">
         @if ($products->count() > 0)
@@ -38,15 +34,6 @@
                     @csrf
                     <button type="submit" class="btn btn-success">Add to cart</button>
                 </form>
-                @if (Auth::user()->admon)
-                <a href="{{route('products.edit', $product)}}" class="btn btn-outline-primary" type="submit"
-                    id="button-addon2">update</a>
-                <form action="{{ route('products.destroy', $product) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-outline-primary" type="submit">delete</button>
-                </form>
-                @endif
             </div>
         </div>
         @endforeach
