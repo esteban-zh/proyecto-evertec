@@ -19,7 +19,7 @@ Route::resource('products.carts', 'ProductCartController')->only(['store', 'dest
 
 Route::resource('carts', 'CartController')->only(['index']);
 
-Route::get('products/{product}', 'ProductController@show')->name('products.show')->middleware('verified');
+Route::get('products/{product}', 'Panel\ProductController@show')->name('products.show')->middleware('verified');
 
 Route::patch('products/{product}/carts/{cart}', 'ProductCartController@removeOne')->name('products.carts.removeOne');
 

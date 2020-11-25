@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\Http;
 
 class PlaceToPayService
 {
+    protected $endpointBase;
+    public $login;
+    protected $secretKey;
+
+    public function __construct()
+    {
+        $this->endpointBase = config('services.placetopay.endpoint_base');
+        $this->login = config('services.placetopay.login');
+        $this->secretKey = config('services.placetopay.secret_key');
+    }
+
     public function makeRequest(Order $order, Request $request)
     {
         $response = Http::post('https://test.placetopay.com/redirection/api/session/', [
@@ -30,8 +41,8 @@ class PlaceToPayService
     }
     public function getCredentials()
     {
-        $login = '6dd490faf9cb87a9862245da41170ff2';
-        $secretKey = '024h1IlD';
+        $login = $this->login;
+        $secretKey = $this->secretKey;
         $seed = date('c');
 
         if (function_exists('random_bytes')) {

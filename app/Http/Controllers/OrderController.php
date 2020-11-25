@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-
     public $cartService;
     public $placeToPayService;
 
@@ -53,7 +52,6 @@ class OrderController extends Controller
                 ->back()
                 ->withErrors("Your cart is empty");
         } else {
-
             $user = $request->user();
 
             $order = $user->orders()->create([

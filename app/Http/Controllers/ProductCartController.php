@@ -46,11 +46,11 @@ class ProductCartController extends Controller
             ->find($product->id)
             ->pivot
             ->quantity ?? 0;
-            if ($quantity == 1) {
-                $this->destroy($product, $cart);
-                return redirect()->back();
-            }
-            $cart->products()->syncWithoutDetaching([
+        if ($quantity == 1) {
+            $this->destroy($product, $cart);
+            return redirect()->back();
+        }
+        $cart->products()->syncWithoutDetaching([
                 $product->id => ['quantity' => $quantity - 1],
                 ]);
         

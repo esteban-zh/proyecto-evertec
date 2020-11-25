@@ -43,7 +43,6 @@ class OrderPaymentController extends Controller
      */
     public function store(Request $request, Order $order)
     {
-
         $payment = $this->p2p->makeRequest($order, $request);
         $order->request_id = $payment['requestId'];
         $order->save();

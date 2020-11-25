@@ -4,6 +4,7 @@ namespace App;
 
 use App\Scopes\AvailableScope;
 use Illuminate\Database\Eloquent\Model;
+
 //use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model

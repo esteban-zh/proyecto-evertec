@@ -18,7 +18,7 @@ class CheckAdmin
         if ($request->user() != null && $request->user()->isAdmin()) {
             return $next($request);
         }
-        abort(403);
-        //return redirect('home');
+        //abort(403);
+        return redirect('home');
     }
 }

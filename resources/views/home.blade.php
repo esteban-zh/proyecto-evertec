@@ -5,7 +5,7 @@
     <div class="input-group d-flex justify-content-around">
         <form class="d-flex" action="{{route('home')}}" method="GET">
             @csrf
-            <input name="name" type="text" class="form-control" placeholder="Buscar..."
+            <input name="name" type="text" class="form-control" placeholder="search..."
                 aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">search</button>
