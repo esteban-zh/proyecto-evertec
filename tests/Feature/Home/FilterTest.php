@@ -23,7 +23,9 @@ class FilterTest extends TestCase
         $user = factory(User::class)->create();
         //$userA = factory(User::class)->create();
         factory(Product::class,20);
-        $product = factory( Product::class)->create();
+        $product = factory( Product::class)->create([
+            'name' => 'nombre del producto'
+        ]);
          
 
         $filters = [
@@ -36,10 +38,10 @@ class FilterTest extends TestCase
             ->get(route('home', $filters));
 
         $responseProducts = $response->getOriginalContent()['products'];
-        
-        dd($responseProducts->first()->id, $product->$product->id);
+        //dd($responseProducts->toArray());
+        //dd($responseProducts->first()->id, $product->$product->id);
 
-        $this->assertEquals($responseProducts->first()->id, $product->id);
+        $this->assertTrue($responseProducts->contains($product));
     }
      
 }
