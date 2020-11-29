@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Products\ImportRequest;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProductRequest;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -95,5 +99,16 @@ class ProductController extends Controller
         Storage::delete($product->picture);
         $product->delete();
         return redirect()->route('home');
+    }
+
+     public function export() 
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+     public function import(ImportRequest $request, ProductsImport $productsImport) 
+    {
+        $productsImport->import($request->importFile);
+        return redirect()->back()->with('status', "productos importados con exito!!");
     }
 }
