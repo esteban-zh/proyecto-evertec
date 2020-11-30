@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiresource('products', 'Api\ProductController')->names([
+    'index' => 'api.products.index',
+    'store' => 'api.products.store',
+    'show' => 'api.products.show',
+    'update' => 'api.products.update',
+    'destroy' => 'api.products.destroy',
+]);
