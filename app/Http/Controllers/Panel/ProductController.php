@@ -21,8 +21,19 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
+        // $products = Product::get();
+        // return view('products.index', ['products' => $products]);
+        if (auth()->user()->hasRole('Admin')) 
+        {
+            $products = Product::all();
+            dd($products);
+        } 
+        else 
+        {
+            $products = auth()->user()->products;           
+        }
         return view('products.index', ['products' => $products]);
+        
     }
 
     /**

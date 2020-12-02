@@ -18,18 +18,29 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
+        $exist = Product::find($row['id']);
+        return $exist ? $this->updateProduct($exist, $row) : $this->createProduct($row);
+    }
+
+    public function createProduct($row)
+    {
         return new Product([
             'id' => $row['id'],
             'name' => $row['name'],
             'picture'=> $row['picture'],
             'description'=> $row['description'],
             'price'=> $row['price'],
-            'category_id'=> $row['category_id'],
             'created_at'=> $row['created_at'],
             'updated_at'=> $row['updated_at'],
             'stock'=> $row['stock'],
             'status'=> $row['status'],
         ]);
+    }
+
+    public function updateProduct(Product $product, $row)
+    {
+        $product->update($row);
+        return $product;
     }
 
     /**
