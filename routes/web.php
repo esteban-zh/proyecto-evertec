@@ -13,13 +13,13 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
-Route::resource('users', 'UserController')->middleware('verified')->middleware(CheckAdmin::class);
+//Route::resource('users', 'UserController')->middleware('verified')->middleware(CheckAdmin::class);
 
 Route::resource('products.carts', 'ProductCartController')->only(['store', 'destroy']);
 
 Route::resource('carts', 'CartController')->only(['index']);
 
-Route::get('products/{product}', 'Panel\ProductController@show')->name('products.show')->middleware('verified');
+//Route::get('products/{product}', 'Panel\ProductController@show')->name('products.show')->middleware('verified');
 
 Route::patch('products/{product}/carts/{cart}', 'ProductCartController@removeOne')->name('products.carts.removeOne');
 

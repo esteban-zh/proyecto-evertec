@@ -4,6 +4,7 @@ use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserSeeder extends Seeder
 {
@@ -15,8 +16,16 @@ class UserSeeder extends Seeder
     public function run()
     {
         Role::truncate();
+        User::truncate();
+        //Permission::truncate();
 
-        $adminRole = Role::create(['name' => 'Admin']);
+        $adminRole = Role::create(['name' => 'admin']);
+        $userRole = Role::create(['name' => 'User']);
+
+        $viewProductPermission = Permission::create(['name' => 'view products']);
+        $createProductPermission = Permission::create(['name' => 'create products']);
+        $updateProductPermission = Permission::create(['name' => 'update products']);
+        $deleteProductPermission = Permission::create(['name' => 'delete products']);
 
 
         $admin = new User();
@@ -38,8 +47,9 @@ class UserSeeder extends Seeder
         $user->email_verified_at = now();
         $user->remember_token = Str::random(10);
         $user->save();
-        
 
+        $user->assignRole($userRole);
+        
         factory(App\User::class, 20)->create();
     }
 }
