@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiresource('products', 'Api\ProductController')->names([
-    'index' => 'api.products.index',
-    'store' => 'api.products.store',
-    'show' => 'api.products.show',
-    'update' => 'api.products.update',
-    'destroy' => 'api.products.destroy',
-]);
+// Route::apiResource('products', 'Api\ProductController')->names([
+//     'index' => 'api.products.index',
+//     'store' => 'api.products.store',
+//     'show' => 'api.products.show',
+//     'update' => 'api.products.update',
+//     'destroy' => 'api.products.destroy',
+// ]);
+
+Route::middleware(['auth:api'])->group(function (){
+    Route::apiResource('products', 'Api\ProductController');
+});

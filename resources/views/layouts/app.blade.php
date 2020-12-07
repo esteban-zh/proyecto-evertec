@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user-auth" content="{{ Auth::user()}}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -62,6 +63,9 @@
                         @if (Auth::user()->isAdmin())
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('panel') }}">{{ __('admin') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('vue.index') }}">{{ __('api panel') }}</a>
                         </li>
 
                         @endif

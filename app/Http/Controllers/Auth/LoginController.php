@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -52,5 +53,20 @@ class LoginController extends Controller
         $credentials = $request->only($this->username(), 'password');
         $credentials['enable'] = true;
         return $credentials;
+    }
+
+      /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->hasRole('admin')) {
+            $user->api_token = Str::random(60);
+            $user->save();
+        }
     }
 }
