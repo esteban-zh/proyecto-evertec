@@ -32,7 +32,7 @@ class ProductController extends Controller
             new ProductCollection(
                 $this->product->orderby('id', 'asc')->get()
             )
-        );
+        );     
     }
 
     /**

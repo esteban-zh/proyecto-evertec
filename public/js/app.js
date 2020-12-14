@@ -1947,12 +1947,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var user = document.head.querySelector('meta[name="user-auth"]');
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      products: null
+      products: [],
+      newProduct: '',
+      fillProduct: {
+        'id': '',
+        'name': '',
+        'price': '',
+        'picture': ''
+      },
+      errors: []
     };
   },
   mounted: function mounted() {
@@ -1962,17 +1983,49 @@ var user = document.head.querySelector('meta[name="user-auth"]');
     getProducts: function getProducts() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/products' + '?api_token=' + JSON.parse(user.content).api_token).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/products" + "?api_token=" + JSON.parse(user.content).api_token).then(function (response) {
         _this.products = response.data;
       });
+    },
+    editProduct: function editProduct(product) {
+      this.fillProduct.id = product.id;
+      this.fillProduct.name = product.name;
+      this.fillProduct.price = product.price;
+      $("#edit").modal("show");
+    },
+    updateProduct: function updateProduct(id) {
+      alert('edit');
     },
     deleteProduct: function deleteProduct(product) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/api/products/' + product.id + '/?api_token=' + JSON.parse(user.content).api_token).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/products/" + product.id + "/?api_token=" + JSON.parse(user.content).api_token).then(function (response) {
         _this2.getProducts();
 
-        alert('The product has been removed successfully');
+        alert("The product has been removed successfully");
+      });
+    },
+    createProduct: function createProduct() {
+      var _this3 = this;
+
+      var url = "/api/products"; // axios
+      //     .post(
+      //         "/api/products" +
+      //             "?api_token=" +
+      //             JSON.parse(user.content).api_token
+      //     )
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, {
+        product: this.newProduct
+      }).then(function (response) {
+        _this3.getProducts();
+
+        _this3.newProduct = "";
+        _this3.errors = [];
+        $("create").modal("hide");
+        alert("new product successfully create");
+      })["catch"](function (error) {
+        _this3.errors = error.response.data;
       });
     }
   }
@@ -37578,11 +37631,11 @@ var render = function() {
         "tbody",
         _vm._l(_vm.products, function(product, index) {
           return _c("tr", { key: index }, [
-            _c("td", [_vm._v(_vm._s(index + 1))]),
+            _c("td", [_vm._v(_vm._s(product.id))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(product.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v("image")]),
+            _c("td", [_vm._v("bring images")]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(product.price))]),
             _vm._v(" "),
@@ -37590,7 +37643,28 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(product.status))]),
             _vm._v(" "),
-            _vm._m(1, true),
+            _c("td", [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-outline-primary",
+                  attrs: {
+                    href: "#",
+                    type: "submit",
+                    id: "button-addon2",
+                    "data-toggle": "modal",
+                    "data-target": "#edit"
+                  },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.editProduct(product)
+                    }
+                  }
+                },
+                [_vm._v("edit")]
+              )
+            ]),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -37600,6 +37674,7 @@ var render = function() {
                   attrs: { href: "#", type: "submit", id: "button-addon2" },
                   on: {
                     click: function($event) {
+                      $event.preventDefault()
                       return _vm.deleteProduct(product)
                     }
                   }
@@ -37635,27 +37710,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("actions")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-outline-primary",
-          attrs: {
-            href: "#",
-            type: "submit",
-            id: "button-addon2",
-            "data-toggle": "modal",
-            "data-target": "#edit"
-          }
-        },
-        [_vm._v("edit")]
-      )
     ])
   }
 ]

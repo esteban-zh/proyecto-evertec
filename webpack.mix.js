@@ -16,4 +16,12 @@ mix.js("resources/js/app.js", "public/js").sass(
     "public/css"
 );
 
+// mix.js(['resources/js/jquery.js','resources/js/bootstrap.js','resources/js/toastr.js','resources/js/app.js',], 'public/js/app.js').sass(
+//     'resources/sass/app.scss',
+//     'public/css'
+// ).styles([
+//     'resources/css/bootstrap.css',
+//     'resources/css/toastr.css',
+// ], 'public/css/app.css');
+
 mix.browserSync("smartfeed.test");

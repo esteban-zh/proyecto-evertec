@@ -113,7 +113,7 @@ class ProductController extends Controller
     {
         Storage::delete($product->picture);
         $product->delete();
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
      public function export() 

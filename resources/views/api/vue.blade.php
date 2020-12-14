@@ -6,7 +6,8 @@
     <br>
 
     <div>
-        <a href="#" class="btn btn-outline-secondary" type="submit" id="button-addon2">create
+        <a href="#" class="btn btn-outline-secondary" data-toggle="modal" data-target="#create" type="submit"
+            id="button-addon2">create
             new product</a>
     </div>
     <br>
@@ -14,6 +15,7 @@
 
         <panel-component></panel-component>
         @include('api.edit')
+        @include('api.create')
 
     </div>
 </div>

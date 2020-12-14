@@ -13,15 +13,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::apiResource('products', 'Api\ProductController')->names([
-//     'index' => 'api.products.index',
-//     'store' => 'api.products.store',
-//     'show' => 'api.products.show',
-//     'update' => 'api.products.update',
-//     'destroy' => 'api.products.destroy',
-// ]);
-
 Route::middleware(['auth:api'])->group(function (){
-    Route::apiResource('products', 'Api\ProductController');
+    Route::apiResource('products', 'Api\ProductController')->names([
+        'index' => 'api.products.index',
+        'store' => 'api.products.store',
+        'show' => 'api.products.show',
+        'update' => 'api.products.update',
+        'destroy' => 'api.products.destroy',
+    ]);
 });
