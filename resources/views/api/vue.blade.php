@@ -5,11 +5,11 @@
     <h1>products details</h1>
     <br>
 
-    <div>
+    {{-- <div>
         <a href="#" class="btn btn-outline-secondary" data-toggle="modal" data-target="#create" type="submit"
             id="button-addon2">create
             new product</a>
-    </div>
+    </div> --}}
     <br>
     <div>
 

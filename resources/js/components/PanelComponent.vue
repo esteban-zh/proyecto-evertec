@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <create-product @createProduct="getProducts"></create-product>
+        <button data-toggle="modal" data-target="#create-product">Crear producto</button>
         <table class="table">
             <thead>
                 <tr>
@@ -16,7 +18,7 @@
                 <tr v-for="(product, index) in products" :key="index">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
-                    <td>bring images</td>
+                    <td>{{product.picture}}</td>
                     <td>{{ product.price }}</td>
                     <td>{{ product.stock }}</td>
                     <td>{{ product.status }}</td>
@@ -56,12 +58,6 @@ export default {
         return {
             products: [],
             newProduct: '',
-            fillProduct: { 
-                'id': '', 
-                'name':'', 
-                'price':'', 
-                'picture':'',
-                },
             errors: []
         };
     },
@@ -100,29 +96,6 @@ export default {
                 .then(response => {
                     this.getProducts();
                     alert("The product has been removed successfully");
-                });
-        },
-        createProduct: function() {
-            var url = "/api/products";
-            // axios
-            //     .post(
-            //         "/api/products" +
-            //             "?api_token=" +
-            //             JSON.parse(user.content).api_token
-            //     )
-            axios
-                .post(url, {
-                    product: this.newProduct
-                })
-                .then(response => {
-                    this.getProducts();
-                    this.newProduct = "";
-                    this.errors = [];
-                    $("create").modal("hide");
-                    alert("new product successfully create");
-                })
-                .catch(error => {
-                    this.errors = error.response.data;
                 });
         }
     }

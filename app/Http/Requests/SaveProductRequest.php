@@ -25,7 +25,7 @@ class SaveProductRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:80',
-            'picture' => [$this->route('product') ? 'nullable' : 'required', 'image'],
+            'picture' => [$this->route('product') ? 'nullable' : 'required'], //quité image validation
             'price' => 'required|numeric|min:0',
         ];
     }
