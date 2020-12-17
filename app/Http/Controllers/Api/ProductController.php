@@ -32,7 +32,7 @@ class ProductController extends Controller
             new ProductCollection(
                 $this->product->orderby('id', 'asc')->get()
             )
-        );     
+        );
     }
 
     /**
@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         $product = $this->product->create($request->all());
 
-        return response()->json(new ProductResources($product),201);
+        return response()->json(new ProductResources($product), 201);
     }
 
     /**

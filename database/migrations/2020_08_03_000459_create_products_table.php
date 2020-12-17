@@ -19,14 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('picture');
             $table->string('description', 500);
             $table->unsignedInteger('price');
-            $table->boolean('enable')->default(true);
             $table->timestamps();
-            $table->integer('stock')->unsigned(); //->nullable();
+            $table->integer('stock')->unsigned(); 
             $table->string('status')->default('available');
         });
-        // Schema::table('flights', function (Blueprint $table) {
-        //     $table->softDeletes();
-        // });
     }
 
     /**
@@ -37,8 +33,5 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('products');
-        // Schema::table('flights', function (Blueprint $table) {
-        //     $table->dropSoftDeletes();
-        // });
     }
 }

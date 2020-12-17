@@ -24,7 +24,6 @@ class ProductsExport implements FromCollection, WithHeadings
             'picture',
             'description',
             'price',
-            'category_id',
             'created_at',
             'updated_at',
             'stock',

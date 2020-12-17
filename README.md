@@ -1,85 +1,37 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Bienvenido al repositorio del reto evertec 2020-para desarrolladores junior
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+**Descripcion:**
 
-## About Laravel
+Consiste en el desarrollo de una plataforma web estilo e-commerce, un sistema que hace posible la comercialización de productos o servicios de manera online, permitiendo pagos a traves de la plataforma [placetopay](https://www.placetopay.com/web/ "placetopay").
+Ademas, dicho sistema, permite tambien el registro de productos, identificacion de usuarios y administracion de cuentas de clientes.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+##Aplicacion:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Herramientas, instalación y ejecucion:**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Para la ejecucion de este proyecto es necesario [php](https://www.php.net/ "php"), la instalacion de [composer](https://getcomposer.org/ "composer"), un servidor HTTP como [Apache](https://httpd.apache.org/ "Apache"), un servicio de base de datos como [MySQL](https://www.mysql.com/ "MySQL"), un administrador de bases de datos como [heidisql](https://www.heidisql.com/ "heidisql") o [phpMyAdmin](https://www.phpmyadmin.net/ "phpMyAdmin") y para las dependencias del frontend [Node.js](https://nodejs.org/en/ "Node.js").
 
-## Learning Laravel
+luego de tener las herramientas necesarias se procede a instalar las dependencias del backend, del frontend y construccion de assets, ejecutando en una terminal de comandos:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+_composer install_
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+_npm install_
 
-## Laravel Sponsors
+_npm run dev_
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+se genera y configura archivo .env con las respectivas variables de entorno, base de datos, credenciales de mailtrap y de la pasarela de pagos placetopay, se ejectua:
 
-### Premium Partners
+_cp .env.example .env_
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
+se crean y se llenan las tablas de migraciones de la base de datos:
 
-### Community Sponsors
+_php artisan migrate --seed_
 
-<a href="https://op.gg"><img src="http://opgg-static.akamaized.net/icon/t.rectangle.png" width="150"></a>
+se tienen creados usuarios con contraseña predeterminados para pruebas del login y roles de usuario corriente y administrador.
+se encuentran en el archivo **UserSeeder.php** de la carpeta database.
 
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [云软科技](http://www.yunruan.ltd/)
+para correr la aplicacion en un navegador web se ejecuta:
 
-## Contributing
+_php artisan serve_
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+_npm run watch_
